@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversão de JSON para Objeto JS</title>
+    <script>
+        function converterJSON() {
+            const jsonTexto = document.getElementById('jsonTexto').value;
+            const resultadoDiv = document.getElementById('resultado');
+
+            try {
+                const objetoJS = JSON.parse(jsonTexto);
+                resultadoDiv.innerHTML = "Objeto JS convertido:<br>";
+                for (const propriedade in objetoJS) {
+                    if (objetoJS.hasOwnProperty(propriedade)) {
+                        resultadoDiv.innerHTML += `${propriedade}: ${objetoJS[propriedade]}<br>`;
+                    }
+                }
+            } catch (error) {
+                resultadoDiv.innerHTML = `Erro na conversão do JSON: ${error.message}`;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Conversão de JSON para Objeto JS</h2>
+    <label for="jsonTexto">Digite o texto JSON:</label><br>
+    <textarea id="jsonTexto" rows="5" cols="50"></textarea><br><br>
+
+    <button onclick="converterJSON()">Converter</button>
+
+    <h3>Resultado:</h3>
+    <div id="resultado"></div>
+</body>
+</html>

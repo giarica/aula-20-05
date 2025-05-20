@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campo</title>
+    <script>
+        window.onload = inicio;
+
+        function inicio(){
+            let botaoLimpar = document.getElementById('limpar');
+            botaoLimpar.addEventListener('click', limpar);
+
+            let botaoMostrar = document.getElementById('mostrar');
+            botaoMostrar.addEventListener('click', mostrarTexto);
+        }
+
+        function limpar(){
+            let campo = document.getElementById('entrada');
+            campo.value="";
+            document.getElementById('saida').innerHTML = "";
+        }
+
+        function mostrarTexto(){
+            let campo = document.getElementById('entrada');
+            let saida = document.getElementById('saida');
+            saida.innerHTML = campo.value;
+        }
+    </script>
+</head>
+<body>
+    <input type="text" id="entrada"><br>
+    <input type="button" id="limpar" value="limpar">
+    <input type="button" id="mostrar" value="mostrar"><br>
+    <p id="saida"></p>
+</body>
+</html>

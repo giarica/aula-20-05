@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Carro</title>
+    <script>
+        let carro;
+
+        function criarCarro() {
+            const nome = document.getElementById('nome').value;
+            const ano = parseInt(document.getElementById('ano').value);
+            const cor = document.getElementById('cor').value;
+
+            if (nome && !isNaN(ano) && cor) {
+                carro = {
+                    nome: nome,
+                    ano: ano,
+                    cor: cor,
+                    velocidade: 0,
+                    acelerar: function() {
+                        this.velocidade += 3;
+                        document.getElementById('velocidade').innerText = this.velocidade;
+                    },
+                    frear: function() {
+                        if (this.velocidade > 0) {
+                            this.velocidade -= 2;
+                            if (this.velocidade < 0) {
+                                this.velocidade = 0;
+                            }
+                            document.getElementById('velocidade').innerText = this.velocidade;
+                        }
+                    }
+                };
+                document.getElementById('infoCarro').innerText = `Carro criado: Nome: ${carro.nome}, Ano: ${carro.ano}, Cor: ${carro.cor}, Velocidade: ${carro.velocidade}`;
+                document.getElementById('botoesAcao').style.display = 'block';
+            } else {
+                document.getElementById('infoCarro').innerText = 'Por favor, preencha todos os campos corretamente.';
+                document.getElementById('botoesAcao').style.display = 'none';
+            }
+        }
+
+        function acelerarCarro() {
+            if (carro) {
+                carro.acelerar();
+            }
+        }
+
+        function frearCarro() {
+            if (carro) {
+                carro.frear();
+            }
+        }
+    </script>
+    <style>
+        #botoesAcao {
+            display: none;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Cadastro de Carro</h2>
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome"><br><br>
+
+    <label for="ano">Ano:</label>
+    <input type="number" id="ano"><br><br>
+
+    <label for="cor">Cor:</label>
+    <input type="text" id="cor"><br><br>
+
+    <button onclick="criarCarro()">Criar Carro</button>
+
+    <p id="infoCarro"></p>
+
+    <div id="botoesAcao">
+        <h3>Ações do Carro</h3>
+        <p>Velocidade atual: <span id="velocidade">0</span></p>
+        <button onclick="acelerarCarro()">Acelerar</button>
+        <button onclick="frearCarro()">Frear</button>
+    </div>
+</body>
+</html>

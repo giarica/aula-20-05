@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cálculo de juros simples</title>
+    <script>
+        function calcularRendimento() {
+            let saldoInicial = parseFloat(document.getElementById('saldo').value);
+            let taxaAnual = parseFloat(document.getElementById('taxa').value) / 100;
+
+            if (isNaN(saldoInicial) || isNaN(taxaAnual)) {
+                document.getElementById('mes1').innerText = "Por favor, digite valores numéricos válidos para saldo e taxa.";
+                document.getElementById('mes2').innerText = "";
+                document.getElementById('mes3').innerText = "";
+                return;
+            }
+
+            for (let meses = 1; meses <= 3; meses++) {
+                let juros = saldoInicial * taxaAnual * (meses / 12);
+                let saldoFinal = saldoInicial + juros;
+                let paragrafoId = `mes${meses}`;
+                document.getElementById(paragrafoId).innerText = `mês ${meses}: rendimento = R$ ${juros.toFixed(2)}`;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>cálculo de juros simples</h2>
+    <label for="saldo">saldo inicial (R$):</label>
+    <input type="text" id="saldo"><br><br>
+
+    <label for="taxa">taxa de juros anual (%):</label>
+    <input type="text" id="taxa"><br><br>
+
+    <button onclick="calcularRendimento()">calcular rendimento</button>
+
+    <h3>Resultados:</h3>
+    <p id="mes1"></p>
+    <p id="mes2"></p>
+    <p id="mes3"></p>
+</body>
+</html>
